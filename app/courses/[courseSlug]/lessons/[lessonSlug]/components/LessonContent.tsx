@@ -1,12 +1,32 @@
+import { MDXRemote } from "next-mdx-remote/rsc";
+
+import { loadMdx } from "@/lib/mdx/load-mdx";
 import { Lesson } from "@/types/lesson";
 
-export function LessonContent({ lesson }: { lesson: Lesson }) {
-  // const mdxSource = loadMdx(lesson.mdx_path);
+export async function LessonContent({ lesson }: { lesson: Lesson }) {
+  let content: string;
 
-  // return (
-  //   <article className="prose max-w-none px-8">
-  //     <MDXRenderer source={mdxSource} />
-  //   </article>
-  // );
-  return <div className="p-8">Lesson Content for {lesson.name}</div>;
+  try {
+    const result = await loadMdx(lesson.mdx_path);
+    content = result.content;
+  } catch (error) {
+    console.log("LessonContent load error:", error);
+
+    return (
+      <div className="flex-1 flex items-center justify-center px-8">
+        <div className="text-center space-y-3">
+          <h2 className="text-lg font-semibold">课程内容加载失败</h2>
+          <p className="text-sm text-muted-foreground">该课程内容暂时不可用，请稍后重试。</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 overflow-y-auto px-8 h-full">
+      <article className="prose max-w-none">
+        <MDXRemote source={content} />
+      </article>
+    </div>
+  );
 }
