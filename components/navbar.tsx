@@ -23,7 +23,11 @@ export const Navbar = ({ initialUser }: { initialUser: User | null }) => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">RaytonX Learn</h1>
+        <h1 className="text-xl font-bold text-gray-900">
+          <Link href="/" className="block">
+            RaytonX Learn
+          </Link>
+        </h1>
 
         {/* Center - Search */}
         <div className="flex-1 max-w-md px-6">
