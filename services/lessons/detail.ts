@@ -4,13 +4,12 @@ import { lessonBySlugQuery, publishedLessonsByCourseSlugQuery } from "./queries"
 
 export const getLessonBySlug = async (
   supabase: TypedSupabaseClient,
-  courseId: string,
+  courseSlug: string,
   lessonSlug: string,
 ) => {
-  const { data, error } = await lessonBySlugQuery(supabase, courseId, lessonSlug).single();
+  const { data, error } = await lessonBySlugQuery(supabase, courseSlug, lessonSlug).single();
 
   if (error) throw error;
-
   return data;
 };
 

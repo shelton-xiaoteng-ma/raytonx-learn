@@ -18,6 +18,5 @@ export const getCourseBySlug = async (supabase: TypedSupabaseClient, courseSlug:
   if (error) {
     throw new Error(`Error fetching course with ID ${courseSlug}: ${error.message}`);
   }
-
   return data;
 };
