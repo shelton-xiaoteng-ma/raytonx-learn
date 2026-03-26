@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getCourseBySlug } from "@/services/courses/detail";
 import { getFirstLessonByCourse } from "@/services/lessons/detail";
@@ -7,6 +9,32 @@ import { CourseHeader } from "./components/courseHeader";
 import { CourseOverview } from "./components/courseOverview";
 import { CourseResources } from "./components/courseResources";
 import { StartLearningButton } from "./components/courseStartLearn";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ courseSlug: string }>;
+}): Promise<Metadata> {
+  const supabase = await createSupabaseServerClient();
+  const { courseSlug } = await params;
+  const course = await getCourseBySlug(supabase, courseSlug);
+
+  return {
+    title: course?.name,
+    description: course?.description?.slice(0, 160),
+    alternates: { canonical: `https://raytonx.com/courses/${courseSlug}` },
+    openGraph: {
+      images: [
+        {
+          url: `/courses/${courseSlug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: course?.name,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Home({ params }: { params: Promise<{ courseSlug?: string }> }) {
   const { courseSlug } = await params;
