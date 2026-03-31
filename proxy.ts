@@ -4,14 +4,13 @@ import { createSupabaseServerClient } from "./lib/supabase/server";
 
 // 指定公开路由和保护的路由
 const publicRoutes = ["/login", "/"];
-const PUBLIC_PREFIXES = ["/courses"];
+const PROTECTED_PREFIXES = ["/dashboard", "/profile"];
 
 export default async function proxy(req: NextRequest) {
   // 检查路由是否是公开
   const path = req.nextUrl.pathname;
   const isPublicRoute =
-    publicRoutes.includes(path) || PUBLIC_PREFIXES.some((prefix) => path.startsWith(prefix));
-
+    publicRoutes.includes(path) || !PROTECTED_PREFIXES.some((prefix) => path.startsWith(prefix));
   if (isPublicRoute) {
     return NextResponse.next();
   }
