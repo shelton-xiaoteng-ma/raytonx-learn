@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_BASE_PATH!}`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL!}${process.env.NEXT_PUBLIC_BASE_PATH!}`,
   },
 };
 
