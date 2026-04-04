@@ -26,10 +26,10 @@ export async function LessonContent({ lesson }: { lesson: Lesson }) {
     <main className="flex-1 overflow-y-auto">
       <div className="max-w-3xl mx-auto px-6 md:px-10 py-10">
         {/* Lesson Title */}
-        <header className="mb-8 pb-6 border-b border-border">
+        {/* <header className="mb-8 pb-6 border-b border-border">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">{lesson.name}</h1>
           {lesson.description && <p className="mt-2 text-muted-foreground">{lesson.description}</p>}
-        </header>
+        </header> */}
 
         {/* MDX Content */}
         <article className="prose prose-neutral max-w-none">
