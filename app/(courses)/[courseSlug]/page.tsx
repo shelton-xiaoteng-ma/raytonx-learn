@@ -81,7 +81,7 @@ export default async function CoursePage({ params }: { params: Promise<{ courseS
   const tags = course.course_tag_relations?.map((rel) => rel.course_tags.name) ?? [];
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="w-full max-w-5xl mx-auto px-6 py-16">
       {/* Breadcrumb */}
       <nav className="mb-8">
         <Link

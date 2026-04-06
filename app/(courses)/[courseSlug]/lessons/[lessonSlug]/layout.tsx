@@ -2,7 +2,7 @@ import { AuthGate } from "@/components/auth-gate";
 
 export default function LessonLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex-1 flex justify-center min-h-0">
+    <div className="flex-1 flex justify-center min-h-0 px-6">
       <div className="w-full max-w-5xl flex min-h-0">
         <AuthGate>{children}</AuthGate>
       </div>

@@ -21,5 +21,5 @@ export function AuthGate({ children }: AuthGateProps) {
     }
   }, [loading, user, pathname, openLoginModal]);
 
-  return <>{children}</>;
+  return <div className="flex w-full min-h-0">{children}</div>;
 }

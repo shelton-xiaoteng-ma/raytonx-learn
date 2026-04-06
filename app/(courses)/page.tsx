@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
 
   if (coursesError || tagsError) {
     return (
-      <div className="max-w-5xl mx-auto px-6 py-16">
+      <div className="w-full max-w-5xl mx-auto px-6 py-16">
         <p className="text-muted-foreground">
           课程加载出错:
           {coursesError ? ` ${coursesError.message}` : ""}
@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="w-full max-w-5xl mx-auto px-6 py-16">
       {/* Page Header */}
       <header className="mb-12">
         <h1 className="text-3xl font-semibold tracking-tight text-foreground mb-3">Courses</h1>
