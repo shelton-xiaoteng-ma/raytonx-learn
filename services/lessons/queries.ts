@@ -45,7 +45,11 @@ export const publicLessonsQuery = (supabase: TypedSupabaseClient) => {
 };
 
 export const publishedLessonsQuery = (supabase: TypedSupabaseClient) => {
-  return supabase.from("lessons").select("*,courses!inner (slug)").eq("status", "published");
+  return supabase
+    .from("lessons")
+    .select("*,courses!inner (slug, status)")
+    .eq("courses.status", "published")
+    .eq("status", "published");
 };
 
 export const lessonByIdQuery = (supabase: TypedSupabaseClient, lessonId: string) => {
